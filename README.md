@@ -1,5 +1,5 @@
 # myo-python-collector
-A piece of python code for getting sEMG data form the MYO armband. <\br>
+A piece of python code for getting sEMG data form the MYO armband. </a>
 And a sample to use classifier to produce the pattern recognition. 
 *Tested on Rpi arm64 and Mac M1.*
 
