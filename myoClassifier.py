@@ -24,17 +24,17 @@ class Classifier(object):
 
 		for i in range(10):
 			if self.device == 'mac':
-				with open('/Users/nekospirin/Desktop/Myo/test/data/vals%d.dat' % i, 'ab') as f: pass
+				with open('~/data/vals%d.dat' % i, 'ab') as f: pass
 			elif self.device == 'rpi':
-				with open('/home/pi/Desktop/Myo/test/data/vals%d.dat' % i, 'ab') as f: pass
+				with open('~/data/vals%d.dat' % i, 'ab') as f: pass
 		self.readData()
 
 	def storeData(self, cls, vals):
 		if self.device == 'mac':
-			with open('/Users/nekospirin/Desktop/Myo/test/data/vals%d.dat' % cls, 'ab') as f:
+			with open('~/data/vals%d.dat' % cls, 'ab') as f:
 				f.write(pack('8H', *vals))
 		elif self.device == 'rpi':
-			with open('/home/pi/Desktop/Myo/test/data/vals%d.dat' % cls, 'ab') as f:
+			with open('~/data/vals%d.dat' % cls, 'ab') as f:
 				f.write(pack('8H', *vals))
 
 
@@ -45,9 +45,9 @@ class Classifier(object):
 		Y = []
 		for i in range(10):
 			if self.device == 'mac':
-				X.append(np.fromfile('/Users/nekospirin/Desktop/Myo/test/data/vals%d.dat' % i, dtype=np.uint16).reshape((-1, 8)))
+				X.append(np.fromfile('~/data/vals%d.dat' % i, dtype=np.uint16).reshape((-1, 8)))
 			elif self.device == 'rpi':
-				X.append(np.fromfile('/home/pi/Desktop/Myo/test/data/vals%d.dat' % i, dtype=np.uint16).reshape((-1, 8)))
+				X.append(np.fromfile('~/data/vals%d.dat' % i, dtype=np.uint16).reshape((-1, 8)))
 			Y.append(i + np.zeros(X[-1].shape[0]))
 
 		self.train(np.vstack(X), np.hstack(Y))
@@ -55,9 +55,9 @@ class Classifier(object):
 	def deleteData(self):
 		for i in range(10):
 			if self.device == 'mac':
-			    with open('/Users/nekospirin/Desktop/Myo/test/data/vals%d.dat' % i, 'wb') as f: pass
+			    with open('~/data/vals%d.dat' % i, 'wb') as f: pass
 			elif self.device == 'rpi':
-			    with open('/home/pi/Desktop/Myo/test/data/vals%d.dat' % i, 'wb') as f: pass
+			    with open('~/data/vals%d.dat' % i, 'wb') as f: pass
 		self.readData()
 
 	def train(self, X, Y):
